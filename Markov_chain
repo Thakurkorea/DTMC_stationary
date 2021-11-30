@@ -1,0 +1,28 @@
+matrix=[0.24	0.61	0	0.06	0.01	0.08
+0.08	0.8	0	0.06	0	0.06
+0	0.5	0	0.5	0	0
+0.04	0.37	0	0.55	0	0.04
+0.14	0.5	0.07	0.07	0.14	0.07
+0.05	0.45	0	0.04	0.02	0.44];
+
+matrix=matrix./sum(matrix,2);
+mc = dtmc(matrix)
+[x1,t1] = asymptotics(mc) 
+t=[]
+c=[]
+for i= 1:16;
+b=mean(matrix^i);
+t=[t;matrix^i];
+c=[c; ; b]
+end
+
+aa=size(c);
+for ii=1:aa(2);
+  plot(c(:,ii),'DisplayName',['U',num2str(ii)])
+  legend
+  hold on
+
+end
+hold off
+xlabel( 'Time')
+ylabel('Probability')
